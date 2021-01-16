@@ -55,7 +55,7 @@ def detect_object(path, filename):
         "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
         "sofa", "train", "tvmonitor"]
     COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
-    prototxt="ssd/MobileNetSSD_deploy.prototxt.txt"
+    prototxt="ssd/MobileNetSSD_deploy.prototxt"
     model ="ssd/MobileNetSSD_deploy.caffemodel"
     # Reads a network model stored in Caffe framework's format
     net = cv2.dnn.readNetFromCaffe(prototxt, model)
@@ -71,13 +71,13 @@ def detect_object(path, filename):
             box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
             (startX, startY, endX, endY) = box.astype("int")
             # display the prediction
-            label = "{}: {:.0f}%".format(CLASSES[idx], confidence * 100)
+            label = "{} {:.0f}%".format(CLASSES[idx], confidence * 100)
             # print("[INFO] {}".format(label))
             cv2.rectangle(image, (startX, startY), (endX, endY),
                 COLORS[idx], 2)
             y = startY - 15 if startY - 15 > 15 else startY + 15
             cv2.putText(image, label, (startX, y),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 0.7, COLORS[idx], 2)
 
     cv2.imwrite(f"{DOWNLOAD_FOLDER}{filename}",image)
   
