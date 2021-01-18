@@ -68,6 +68,12 @@ $ heroku logs --tail
 
 - Зайдите в своё приложение в раздел `Settings`
 - В разделе `Buildpacks` добавьте следующие пакеты:
--- heroku/python
--- https://github.com/heroku/heroku-buildpack-apt.git
+- heroku/python
+- https://github.com/heroku/heroku-buildpack-apt.git
+
+---
+
+### Демонстрация
+
+- https://stark-taiga-35718.herokuapp.com
 
